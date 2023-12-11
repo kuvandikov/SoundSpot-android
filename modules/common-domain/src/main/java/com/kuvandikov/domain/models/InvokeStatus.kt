@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021, Alashov Berkeli
+ * Copyright (C) 2021, Anvarbek Kuvandikov
  * All rights reserved.
  */
 package com.kuvandikov.domain.models

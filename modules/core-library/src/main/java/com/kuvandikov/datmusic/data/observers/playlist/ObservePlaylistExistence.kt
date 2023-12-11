@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022, Alashov Berkeli
+ * Copyright (C) 2022, Anvarbek Kuvandikov
  * All rights reserved.
  */
 package com.kuvandikov.datmusic.data.observers.playlist

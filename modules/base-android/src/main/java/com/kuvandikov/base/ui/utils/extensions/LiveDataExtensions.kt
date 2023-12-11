@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018, Alashov Berkeli
+ * Copyright (C) 2018, Anvarbek Kuvandikov
  * All rights reserved.
  */
 package com.kuvandikov.base.ui.utils.extensions

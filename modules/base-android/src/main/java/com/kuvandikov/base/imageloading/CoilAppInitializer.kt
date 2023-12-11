@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019, Alashov Berkeli
+ * Copyright (C) 2023, Anvarbek Kuvandikov
  * All rights reserved.
  */
 package com.kuvandikov.base.imageloading
