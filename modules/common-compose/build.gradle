@@ -1,0 +1,83 @@
+/*
+* Copyright (C) 2023, Anvarbek Kuvandikov
+* All rights reserved.
+*/
+
+import com.kuvandikov.buildSrc.App
+import com.kuvandikov.buildSrc.Deps
+
+plugins {
+	id "com.android.library"
+	id "kotlin-android"
+	id "kotlin-kapt"
+}
+
+android {
+	compileSdkVersion App.compileSdkVersion
+
+	defaultConfig {
+		minSdkVersion App.minSdkVersion
+
+		vectorDrawables.useSupportLibrary = true
+	}
+
+
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
+
+	buildFeatures {
+		compose = true
+	}
+
+	composeOptions {
+		kotlinCompilerExtensionVersion Deps.Android.Compose.compilerVersion
+	}
+	lint {
+		disable 'GradleCompatible'
+	}
+	namespace 'com.kuvandikov.common.compose'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	api project(":modules:base-android")
+	api project(":modules:core-playback")
+
+	// Android
+	api Deps.Android.navigationCompose
+	api Deps.Android.navigationHiltCompose
+
+	api Deps.Android.Compose.ui
+	api Deps.Android.Compose.uiUtil
+	api Deps.Android.Compose.uiTooling
+	api Deps.Android.Compose.foundation
+	api Deps.Android.Compose.material
+	api Deps.Android.Compose.material3
+	api Deps.Android.Compose.materialIcons
+	api Deps.Android.Compose.materialIconsExtended
+	api Deps.Android.Compose.constraintLayout
+	api Deps.Android.Compose.activity
+	api Deps.Android.Compose.liveData
+	api Deps.Android.Compose.paging
+	api Deps.Android.Lifecycle.composeViewModels
+
+	// Accompanist
+	api Deps.Android.Accompanist.pager
+	api Deps.Android.Accompanist.permissions
+	api Deps.Android.Accompanist.placeholder
+	api Deps.Android.Accompanist.swiperefresh
+	api Deps.Android.Accompanist.systemUiController
+	api Deps.Android.Accompanist.flowlayout
+	api Deps.Android.Accompanist.navigationMaterial
+	api Deps.Android.Accompanist.navigationAnimation
+
+	// 3rd party
+	api Deps.Android.Compose.lottie
+	api Deps.Android.Compose.coil
+	api Deps.Android.Compose.reorderable
+}

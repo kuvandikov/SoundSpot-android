@@ -1,0 +1,9 @@
+<!--
+  Copyright (C) 2023, Anvarbek Kuvandikov
+  All rights reserved.
+  -->
+
+<resources>
+    <string name="app_launcher">[D] Datmusic</string>
+    <string name="app_name">[D] Datmusic</string>
+</resources>

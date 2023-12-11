@@ -1,0 +1,144 @@
+/*
+* Copyright (C) 2023, Anvarbek Kuvandikov
+* All rights reserved.
+*/
+
+import com.kuvandikov.buildSrc.App
+import com.kuvandikov.buildSrc.Deps
+
+plugins {
+	id("com.android.application")
+	id("dagger.hilt.android.plugin")
+	id("kotlin-android")
+	id("kotlin-kapt")
+	id("kotlin-parcelize")
+	id("org.jetbrains.kotlin.plugin.serialization")
+	id("androidx.navigation.safeargs.kotlin")
+}
+
+def gitSha = "git rev-parse --short HEAD".execute([], project.rootDir).text.trim()
+
+android {
+	compileSdkVersion = App.compileSdkVersion
+
+	defaultConfig {
+		namespace = "com.kuvandikov.datmusic"
+		applicationId = App.id
+		versionCode = App.versionCode
+		versionName = "${App.versionName}-${gitSha}"
+		targetSdkVersion(App.targetSdkVersion)
+		minSdkVersion(App.minSdkVersion)
+
+		multiDexEnabled = true
+		vectorDrawables.useSupportLibrary = true
+	}
+
+	sourceSets {
+		main.java.srcDirs += "src/main/kotlin"
+		test.java.srcDirs += "src/test/kotlin"
+
+		main.res.srcDirs += "src/main/res-drawable"
+	}
+
+	compileOptions {
+		sourceCompatibility = 1.8
+		targetCompatibility = 1.8
+	}
+
+
+	buildFeatures {
+		compose = true
+	}
+
+	composeOptions {
+		kotlinCompilerExtensionVersion = Deps.Android.Compose.compilerVersion
+	}
+
+	/*signingConfigs {
+		release {
+			storeFile = getFile("signing/datmusic-release.jks", "signing/alashov-debug.jks")
+			storePassword = prop("DATMUSIC_RELEASE_KEYSTORE_PWD", "alashov")
+			keyPassword = prop("DATMUSIC_RELEASE_KEY_PWD", "alashov")
+			keyAlias = prop("DATMUSIC_RELEASE_KEY_ALIAS", "alashov")
+		}
+	}*/
+
+	buildTypes {
+		debug {
+			versionNameSuffix = "-DEBUG"
+			applicationIdSuffix = ".debug"
+
+			multiDexKeepProguard = file("multidex-config.pro")
+		}
+
+		release {
+//			signingConfig = signingConfigs.release
+			minifyEnabled = true
+			shrinkResources = true
+			proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+
+			multiDexKeepProguard = file("multidex-config.pro")
+		}
+	}
+
+	// app bundling configuration
+	bundle {
+		language {
+			enableSplit = false // don't split language resources, as the app supports locale changing
+		}
+	}
+	kotlinOptions {
+		jvmTarget = "1.8"
+	}
+	lint {
+		abortOnError = false
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven { url "https://jitpack.io" }
+	maven { url "https://oss.jfrog.org/artifactory/oss-snapshot-local/" }
+	maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+}
+
+dependencies {
+	implementation(project(":modules:common-compose"))
+	implementation(project(":modules:common-ui-theme"))
+	implementation(project(":modules:common-ui-components"))
+	implementation(project(":modules:core-ui"))
+	implementation(project(":modules:core-playback"))
+	implementation(project(":modules:core-ui-playback"))
+	implementation(project(":modules:core-ui-downloader"))
+	implementation(project(":modules:navigation"))
+	implementation(project(":modules:ui-library"))
+	implementation(project(":modules:ui-search"))
+	implementation(project(":modules:ui-settings"))
+	implementation(project(":modules:ui-artist"))
+	implementation(project(":modules:ui-album"))
+	implementation(project(":modules:ui-downloads"))
+
+	implementation(Deps.Kotlin.coroutinesAndroid)
+
+	// utils
+	implementation(Deps.Utils.proguardSnippets)
+
+	kapt(Deps.Android.Lifecycle.compiler)
+
+	// dagger-2
+	implementation(Deps.Dagger.hilt)
+	kapt(Deps.Dagger.compiler)
+	kapt(Deps.Dagger.hiltCompiler)
+
+	// leak canary
+	//debugImplementation Deps.LeakCanary.leakCanary
+
+	// android
+	implementation(Deps.Android.multiDex)
+}
+
+
+
+apply(plugin: "com.google.gms.google-services")
+apply(plugin: "com.google.firebase.crashlytics")
+apply(plugin: "kotlinx-serialization")

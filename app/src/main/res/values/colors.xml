@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  Copyright (C) 2023, Anvarbek Kuvandikov
+  All rights reserved.
+  -->
+<resources>
+    <color name="primary">#16053D</color>
+    <color name="secondary">#FF3C8F</color>
+</resources>

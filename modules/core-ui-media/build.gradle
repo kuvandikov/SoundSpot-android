@@ -1,0 +1,53 @@
+/*
+* Copyright (C) 2023, Anvarbek Kuvandikov
+* All rights reserved.
+*/
+
+
+import com.kuvandikov.buildSrc.App
+import com.kuvandikov.buildSrc.Deps
+
+plugins {
+	id "com.android.library"
+	id "kotlin-android"
+	id "kotlin-kapt"
+}
+
+android {
+	namespace "com.kuvandikov.datmusic.ui.media"
+
+	compileSdkVersion App.compileSdkVersion
+
+	defaultConfig {
+		minSdkVersion App.minSdkVersion
+	}
+
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
+
+	buildFeatures {
+		compose = true
+	}
+
+	composeOptions {
+		kotlinCompilerExtensionVersion Deps.Android.Compose.compilerVersion
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	api(project(":modules:common-compose"))
+	api(project(":modules:common-ui-theme"))
+	api(project(":modules:common-ui-components"))
+	api(project(":modules:core-ui"))
+	api(project(":modules:core-ui-library"))
+	api(project(":modules:navigation"))
+
+	// TODO: uncomment when merged: https://github.com/saket/swipe/pull/5, https://github.com/saket/swipe/pull/6
+	//implementation Deps.Android.Compose.swipe
+}

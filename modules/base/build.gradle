@@ -1,0 +1,74 @@
+/*
+* Copyright (C) 2023, Anvarbek Kuvandikov
+* All rights reserved.
+*/
+
+import com.kuvandikov.buildSrc.App
+import com.kuvandikov.buildSrc.Deps
+
+
+plugins {
+	id "com.android.library"
+	id "kotlin-android"
+	id "kotlin-kapt"
+}
+
+android {
+	compileSdkVersion App.compileSdkVersion
+
+	defaultConfig {
+		minSdkVersion App.minSdkVersion
+	}
+
+
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
+	lint {
+		disable 'GradleCompatible'
+	}
+	namespace 'com.kuvandikov.base'
+}
+
+repositories {
+	mavenCentral()
+	maven { url "https://jitpack.io" }
+}
+
+dependencies {
+	api Deps.Kotlin.stdlib
+	api Deps.Kotlin.serializationJson
+	api Deps.Kotlin.coroutinesCore
+
+	api Deps.Utils.coil
+	api Deps.Utils.timber
+	api Deps.Utils.threeTenAbp
+
+	api Deps.Dagger.dagger
+	kapt Deps.Dagger.compiler
+	api Deps.Dagger.hilt
+	kapt Deps.Dagger.hiltCompiler
+
+	api Deps.OkHttp.okhttp
+	api Deps.OkHttp.logger
+	api Deps.Retrofit.retrofit
+	api Deps.Retrofit.rxjavaAdapter
+	api Deps.Retrofit.retroAuth
+	api Deps.Retrofit.kotlinSerializerConverter
+
+	api Deps.Android.documentFile
+	api Deps.Android.Paging.runtime
+	api Deps.Android.Paging.common
+
+	api platform(Deps.Firebase.bom)
+	api Deps.Firebase.messaging
+	api Deps.Firebase.remoteConfig
+	api Deps.Firebase.analytics
+	api Deps.Firebase.crashlytics
+
+	api project(":modules:i18n")
+
+	testImplementation project(":modules:common-testing")
+	kaptTest Deps.Dagger.hiltCompiler
+}
