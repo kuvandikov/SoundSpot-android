@@ -12,16 +12,27 @@ import com.kuvandikov.datmusic.domain.entities.Audio
 import com.kuvandikov.datmusic.domain.models.errors.ApiErrorException
 import com.kuvandikov.datmusic.domain.models.errors.mapToApiError
 
+
+
+@Serializable
+data class ApiRequest(
+    @SerialName("query")
+    val query:String =  ""
+)
+
 @Serializable
 data class ApiResponse(
     @SerialName("status")
-    val status: String,
+    val status: String = "ok",
 
     @SerialName("error")
     val error: Error? = null,
 
     @SerialName("data")
     val data: Data = Data(),
+
+    @SerialName("hits")
+    val hits: List<Audio> = arrayListOf(),
 ) {
 
     val isSuccessful get() = status == "ok"

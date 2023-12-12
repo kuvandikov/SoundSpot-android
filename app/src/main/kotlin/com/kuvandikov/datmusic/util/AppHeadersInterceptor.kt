@@ -22,7 +22,7 @@ internal class AppHeadersInterceptor(context: Context) : Interceptor {
             .run {
                 val host = chain.request().url.host
                 when (host.contains(BaseConfig.BASE_HOST)) {
-                    true -> this.header("X-Datmusic-Id", clientId).header("X-Datmusic-Version", Config.APP_USER_AGENT)
+                    true -> this.header("X-Algolia-Application-Id", "1AXPVLGBOB").header("X-Algolia-API-Key", "6f857308a03276ec3ec93f0217cbb2b7")
                     else -> this
                 }
             }

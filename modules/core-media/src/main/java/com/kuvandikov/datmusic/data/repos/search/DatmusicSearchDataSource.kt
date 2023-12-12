@@ -19,7 +19,7 @@ class DatmusicSearchDataSource @Inject constructor(
 ) {
     suspend operator fun invoke(params: DatmusicSearchParams): Result<ApiResponse> {
         return resultApiCall(dispatchers.network) {
-            endpoints.multisearch(params.toQueryMap(), *params.types.toTypedArray())
+            endpoints.query()
                 .checkForErrors()
         }
     }

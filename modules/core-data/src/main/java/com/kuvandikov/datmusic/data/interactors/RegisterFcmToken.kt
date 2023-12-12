@@ -32,11 +32,11 @@ class RegisterFcmToken @Inject constructor(
 
     override suspend fun doWork(params: Params): String {
         val lastRegisteredToken = preferences.get(FCM_REGISTERED_TOKEN, "").first()
-        return if (params.token != lastRegisteredToken)
+        return /*if (params.token != lastRegisteredToken)
             resultApiCall(dispatchers.network) { api.registerFcmToken(params.token).checkForErrors() }.map {
                 preferences.save(FCM_REGISTERED_TOKEN, params.token)
                 it.data.message
             }.getOrThrow()
-        else "Token already sent"
+        else*/ "Token already sent"
     }
 }

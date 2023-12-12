@@ -14,9 +14,17 @@ import retrofit2.http.QueryMap
 import com.kuvandikov.datmusic.data.DatmusicSearchParams
 import com.kuvandikov.datmusic.domain.entities.AlbumId
 import com.kuvandikov.datmusic.domain.entities.ArtistId
+import com.kuvandikov.datmusic.domain.models.ApiRequest
 import com.kuvandikov.datmusic.domain.models.ApiResponse
+import retrofit2.http.Body
+import retrofit2.http.Header
 
 interface DatmusicEndpoints {
+
+//    https://1AXPVLGBOB-dsn.algolia.net/1/indexes/songs/query
+    @JvmSuppressWildcards
+    @POST("/1/indexes/songs/query")
+    suspend fun query(@Body apiRequest: ApiRequest = ApiRequest()): ApiResponse
 
     @JvmSuppressWildcards
     @GET("/multisearch")
