@@ -8,15 +8,6 @@ import com.dropbox.android.external.store4.Fetcher
 import com.dropbox.android.external.store4.SourceOfTruth
 import com.dropbox.android.external.store4.Store
 import com.dropbox.android.external.store4.StoreBuilder
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Named
-import javax.inject.Singleton
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
-import org.threeten.bp.Duration
 import com.kuvandikov.data.LastRequests
 import com.kuvandikov.data.PreferencesStore
 import com.kuvandikov.datmusic.data.DatmusicSearchParams
@@ -27,6 +18,15 @@ import com.kuvandikov.datmusic.domain.entities.Album
 import com.kuvandikov.datmusic.domain.entities.Artist
 import com.kuvandikov.datmusic.domain.entities.Audio
 import com.kuvandikov.datmusic.domain.models.errors.requireNonEmpty
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import org.threeten.bp.Duration
+import javax.inject.Named
+import javax.inject.Singleton
 
 typealias DatmusicSearchStore<T> = Store<DatmusicSearchParams, List<T>>
 
@@ -56,7 +56,7 @@ object DatmusicSearchStoreModule {
         @Named("audios") lastRequests: LastRequests
     ): DatmusicSearchStore<Audio> = StoreBuilder.from(
         fetcher = Fetcher.of { params: DatmusicSearchParams ->
-            search(params).map { it.data.audios + it.data.minerva + it.data.flacs /* + it.hits */ }
+            search(params).map { it.data.audios + it.data.minerva + it.data.flacs + it.hits }
                 .fetcherDefaults(lastRequests, params)
         },
         sourceOfTruth = SourceOfTruth.of(

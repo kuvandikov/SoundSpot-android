@@ -4,20 +4,23 @@
  */
 package com.kuvandikov.datmusic.domain.models
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 import com.kuvandikov.datmusic.domain.entities.Album
 import com.kuvandikov.datmusic.domain.entities.Artist
 import com.kuvandikov.datmusic.domain.entities.Audio
 import com.kuvandikov.datmusic.domain.models.errors.ApiErrorException
 import com.kuvandikov.datmusic.domain.models.errors.mapToApiError
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 
 
 @Serializable
 data class ApiRequest(
     @SerialName("query")
-    val query:String =  ""
+    val query:String =  "",
+
+    @SerialName("page")
+    val page: Int
 )
 
 @Serializable
