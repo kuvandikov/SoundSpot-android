@@ -4,6 +4,12 @@
  */
 package com.kuvandikov.datmusic.data.api
 
+import com.kuvandikov.datmusic.data.DatmusicSearchParams
+import com.kuvandikov.datmusic.domain.entities.AlbumId
+import com.kuvandikov.datmusic.domain.entities.ArtistId
+import com.kuvandikov.datmusic.domain.models.ApiRequest
+import com.kuvandikov.datmusic.domain.models.ApiResponse
+import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -11,12 +17,13 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 import retrofit2.http.QueryMap
-import com.kuvandikov.datmusic.data.DatmusicSearchParams
-import com.kuvandikov.datmusic.domain.entities.AlbumId
-import com.kuvandikov.datmusic.domain.entities.ArtistId
-import com.kuvandikov.datmusic.domain.models.ApiResponse
 
 interface DatmusicEndpoints {
+
+//    https://1AXPVLGBOB-dsn.algolia.net/1/indexes/songs/query
+    @JvmSuppressWildcards
+    @POST("/1/indexes/songs/query")
+    suspend fun query(@Body apiRequest: ApiRequest): ApiResponse
 
     @JvmSuppressWildcards
     @GET("/multisearch")

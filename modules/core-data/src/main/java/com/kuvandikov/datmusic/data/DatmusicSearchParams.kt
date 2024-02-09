@@ -5,6 +5,7 @@
 package com.kuvandikov.datmusic.data
 
 import com.kuvandikov.datmusic.data.CaptchaSolution.Companion.toQueryMap
+import com.kuvandikov.datmusic.domain.models.ApiRequest
 
 typealias BackendTypes = Set<DatmusicSearchParams.BackendType>
 
@@ -33,6 +34,8 @@ data class DatmusicSearchParams(
                 map.putAll(captchaSolution.toQueryMap())
             }
         }
+
+        fun DatmusicSearchParams.toApiRequest() = ApiRequest(query, page)
 
         fun DatmusicSearchParams.withTypes(vararg types: BackendType) = copy(types = types.toList())
     }

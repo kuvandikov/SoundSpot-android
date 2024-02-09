@@ -54,14 +54,14 @@ android {
 		kotlinCompilerExtensionVersion = Deps.Android.Compose.compilerVersion
 	}
 
-	/*signingConfigs {
+	signingConfigs {
 		release {
-			storeFile = getFile("signing/datmusic-release.jks", "signing/alashov-debug.jks")
-			storePassword = prop("DATMUSIC_RELEASE_KEYSTORE_PWD", "alashov")
-			keyPassword = prop("DATMUSIC_RELEASE_KEY_PWD", "alashov")
-			keyAlias = prop("DATMUSIC_RELEASE_KEY_ALIAS", "alashov")
+			storeFile = file("../key.jks")
+			storePassword = "Anvar4660"
+			keyAlias = "loving"
+			keyPassword = "Anvar4660"
 		}
-	}*/
+	}
 
 	buildTypes {
 		debug {
@@ -72,7 +72,7 @@ android {
 		}
 
 		release {
-//			signingConfig = signingConfigs.release
+			signingConfig = signingConfigs.release
 			minifyEnabled = true
 			shrinkResources = true
 			proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
