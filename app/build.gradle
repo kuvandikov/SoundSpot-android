@@ -41,8 +41,8 @@ android {
 	}
 
 	compileOptions {
-		sourceCompatibility = 17
-		targetCompatibility = 17
+		sourceCompatibility = 1.8
+		targetCompatibility = 1.8
 	}
 
 
@@ -88,7 +88,7 @@ android {
 		}
 	}
 	kotlinOptions {
-		jvmTarget = "17"
+		jvmTarget = "1.8"
 	}
 	lint {
 		abortOnError = false
