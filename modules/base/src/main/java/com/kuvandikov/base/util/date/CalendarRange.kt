@@ -1,7 +1,8 @@
 /*
  * Copyright (C) 2023, Anvarbek Kuvandikov
  * All rights reserved.
- */
+ *//*
+
 package com.kuvandikov.base.util.date
 
 import java.util.*
@@ -58,3 +59,4 @@ class DateIterator(start: Date, private val endInclusive: Date, private val fiel
 
 infix operator fun Calendar.rangeTo(that: Calendar) = CalendarRange(this, that)
 infix operator fun Date.rangeTo(that: Date) = DateRange(this, that)
+*/
