@@ -48,7 +48,6 @@ internal fun AudioDownloadDropdownMenu(
 
         add(R.string.downloads_download_play)
         add(R.string.downloads_download_playNext)
-        add(R.string.audio_menu_copyLink)
         add(R.string.playlist_addTo)
 
         if (downloadInfo.isIncomplete()) {

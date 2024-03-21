@@ -17,7 +17,6 @@ sealed class AudioDownloadItemAction(open val audio: AudioDownloadItem) {
     data class Open(override val audio: AudioDownloadItem) : AudioDownloadItemAction(audio)
     data class Remove(override val audio: AudioDownloadItem) : AudioDownloadItemAction(audio)
     data class Delete(override val audio: AudioDownloadItem) : AudioDownloadItemAction(audio)
-    data class CopyLink(override val audio: AudioDownloadItem) : AudioDownloadItemAction(audio)
     data class AddToPlaylist(override val audio: AudioDownloadItem) : AudioDownloadItemAction(audio)
 
     companion object {
@@ -31,7 +30,6 @@ sealed class AudioDownloadItemAction(open val audio: AudioDownloadItem) {
             R.string.downloads_download_open -> Open(audio)
             R.string.downloads_download_remove -> Remove(audio)
             R.string.downloads_download_delete -> Delete(audio)
-            R.string.audio_menu_copyLink -> CopyLink(audio)
             R.string.playlist_addTo -> AddToPlaylist(audio)
             else -> error("Unknown action: $actionLabelRes")
         }

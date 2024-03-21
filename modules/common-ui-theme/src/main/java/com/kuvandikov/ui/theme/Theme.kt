@@ -49,7 +49,7 @@ fun AppTheme(
         ColorPalettePreference.Black -> if (isDarkTheme) appDarkColors(Color.Black, Secondary) else appLightColors(Primary, Secondary)
         ColorPalettePreference.Dynamic -> dynamicAppColors(isDarkTheme = isDarkTheme, variant = false)
         ColorPalettePreference.Dynamic_Variant -> dynamicAppColors(isDarkTheme = isDarkTheme, variant = true)
-        else -> if (isDarkTheme) DarkAppColors else LightAppColors
+        else -> if (isDarkTheme) appDarkColors(Gray1000, Green600) else appLightColors(Gray1000, Green600)/*if (isDarkTheme) DarkAppColors else LightAppColors*/
     }
 
     if (changeSystemBar) {

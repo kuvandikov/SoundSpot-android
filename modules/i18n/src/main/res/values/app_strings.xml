@@ -27,7 +27,6 @@
     <string name="audio.menu.playNext.message">Added to queue</string>
     <string name="audio.menu.download">Download</string>
     <string name="audio.menu.downloadById">Download</string>
-    <string name="audio.menu.copyLink">Copy link</string>
 
     <string name="downloader.downloadsLocationSelect.title">Downloads location</string>
     <string name="downloader.downloadsLocationSelect.text">Click Next to select downloads folder location</string>

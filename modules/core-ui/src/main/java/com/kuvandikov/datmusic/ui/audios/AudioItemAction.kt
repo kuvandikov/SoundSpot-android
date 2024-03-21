@@ -12,7 +12,6 @@ sealed class AudioItemAction(open val audio: Audio) {
     data class PlayNext(override val audio: Audio) : AudioItemAction(audio)
     data class Download(override val audio: Audio) : AudioItemAction(audio)
     data class DownloadById(override val audio: Audio) : AudioItemAction(audio)
-    data class CopyLink(override val audio: Audio) : AudioItemAction(audio)
     data class AddToPlaylist(override val audio: Audio) : AudioItemAction(audio)
     data class ExtraAction(val actionLabelRes: Int, override val audio: Audio) : AudioItemAction(audio)
 
@@ -35,7 +34,6 @@ sealed class AudioItemAction(open val audio: Audio) {
             R.string.audio_menu_playNext -> PlayNext(audio)
             R.string.audio_menu_download -> Download(audio)
             R.string.audio_menu_downloadById -> DownloadById(audio)
-            R.string.audio_menu_copyLink -> CopyLink(audio)
             R.string.playlist_addTo -> AddToPlaylist(audio)
             else -> ExtraAction(actionLabelRes, audio)
         }

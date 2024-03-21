@@ -24,9 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import kotlinx.coroutines.launch
 import com.kuvandikov.Config
-import com.kuvandikov.base.ui.ColorPalettePreference
 import com.kuvandikov.base.ui.DarkModePreference
 import com.kuvandikov.base.ui.ThemeState
 import com.kuvandikov.common.compose.LocalAppVersion
@@ -48,7 +46,7 @@ import com.kuvandikov.ui.components.SelectableDropdownMenu
 import com.kuvandikov.ui.scaffoldPadding
 import com.kuvandikov.ui.theme.AppTheme
 import com.kuvandikov.ui.theme.DefaultTheme
-import com.kuvandikov.ui.theme.isDynamicThemeSupported
+import kotlinx.coroutines.launch
 
 @Composable
 fun SettingsRoute(isPreviewMode: Boolean = LocalIsPreviewMode.current) {
@@ -174,7 +172,7 @@ fun LazyListScope.settingsThemeSection(themeState: ThemeState, setThemeState: (T
                 modifier = Modifier.offset(x = 12.dp)
             )
         }
-        SettingsItem(stringResource(R.string.settings_theme_colorPalette)) {
+        /*SettingsItem(stringResource(R.string.settings_theme_colorPalette)) {
             SelectableDropdownMenu(
                 items = ColorPalettePreference.values().toList().filter {
                     // filter out dynamic theme if not supported
@@ -184,7 +182,7 @@ fun LazyListScope.settingsThemeSection(themeState: ThemeState, setThemeState: (T
                 onItemSelect = { setThemeState(themeState.copy(colorPalettePreference = it)) },
                 modifier = Modifier.offset(x = 12.dp)
             )
-        }
+        }*/
     }
 }
 

@@ -5,12 +5,12 @@
   -->
 <resources>
     <string-array name="languageNames">
-        <item>Türkmençe</item>
+        <item>English</item>
         <item>Русский</item>
     </string-array>
 
     <string-array name="languageKeys">
-        <item>tk</item>
+        <item>en</item>
         <item>ru</item>
     </string-array>
 

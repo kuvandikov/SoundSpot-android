@@ -13,7 +13,6 @@
     <string name="playback.queueTitle.artist.value">Воспроизведение от исполнителя</string>
     <string name="playback.queueTitle.album">Воспроизведение из альбома</string>
     <string name="audio.menu.download">Скачать</string>
-    <string name="audio.menu.copyLink">Копировать ссылку</string>
     <string name="downloader.downloadsLocationSelect.title">Расположение загрузки</string>
     <string name="downloader.downloadsLocationSelect.text">Нажмите Далее, чтобы выбрать расположение папки загрузок</string>
     <string name="downloader.downloadsLocationSelect.next">Далее</string>
