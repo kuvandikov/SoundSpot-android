@@ -6,12 +6,6 @@ package com.kuvandikov.datmusic.ui.playback
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import com.kuvandikov.base.ui.SnackbarAction
 import com.kuvandikov.base.ui.SnackbarManager
 import com.kuvandikov.base.ui.SnackbarMessage
@@ -22,12 +16,24 @@ import com.kuvandikov.datmusic.data.interactors.playlist.CreatePlaylist
 import com.kuvandikov.datmusic.domain.entities.Playlist
 import com.kuvandikov.datmusic.domain.entities.PlaylistId
 import com.kuvandikov.datmusic.playback.PlaybackConnection
-import com.kuvandikov.datmusic.playback.models.*
+import com.kuvandikov.datmusic.playback.models.MEDIA_TYPE_ALBUM
+import com.kuvandikov.datmusic.playback.models.MEDIA_TYPE_ARTIST
+import com.kuvandikov.datmusic.playback.models.MEDIA_TYPE_AUDIO_QUERY
+import com.kuvandikov.datmusic.playback.models.MEDIA_TYPE_DOWNLOADS
+import com.kuvandikov.datmusic.playback.models.MEDIA_TYPE_PLAYLIST
 import com.kuvandikov.datmusic.playback.models.QueueTitle.Companion.asQueueTitle
+import com.kuvandikov.datmusic.playback.models.toAlbumSearchQuery
+import com.kuvandikov.datmusic.playback.models.toArtistSearchQuery
 import com.kuvandikov.datmusic.ui.coreLibrary.R
 import com.kuvandikov.i18n.UiMessage
 import com.kuvandikov.navigation.Navigator
 import com.kuvandikov.navigation.screens.LeafScreen
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 data class SavedAsPlaylistMessage(val playlist: Playlist) :
     SnackbarMessage<PlaylistId>(
@@ -76,18 +82,6 @@ class PlaybackViewModel @Inject constructor(
             MEDIA_TYPE_ARTIST -> navigator.navigate(LeafScreen.ArtistDetails.buildRoute(sourceMediaValue))
             MEDIA_TYPE_ALBUM -> navigator.navigate(LeafScreen.AlbumDetails.buildRoute(sourceMediaValue))
             MEDIA_TYPE_AUDIO_QUERY -> navigator.navigate(LeafScreen.Search.buildRoute(sourceMediaValue))
-            MEDIA_TYPE_AUDIO_MINERVA_QUERY -> navigator.navigate(
-                LeafScreen.Search.buildRoute(
-                    sourceMediaValue,
-                    DatmusicSearchParams.BackendType.MINERVA
-                )
-            )
-            MEDIA_TYPE_AUDIO_FLACS_QUERY -> navigator.navigate(
-                LeafScreen.Search.buildRoute(
-                    sourceMediaValue,
-                    DatmusicSearchParams.BackendType.FLACS
-                )
-            )
             else -> Unit
         }
     }

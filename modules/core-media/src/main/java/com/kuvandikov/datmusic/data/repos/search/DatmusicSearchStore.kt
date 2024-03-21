@@ -56,7 +56,7 @@ object DatmusicSearchStoreModule {
         @Named("audios") lastRequests: LastRequests
     ): DatmusicSearchStore<Audio> = StoreBuilder.from(
         fetcher = Fetcher.of { params: DatmusicSearchParams ->
-            search(params).map { it.data.audios + it.data.minerva + it.data.flacs + it.hits }
+            search(params).map { it.data.audios + it.hits }
                 .fetcherDefaults(lastRequests, params)
         },
         sourceOfTruth = SourceOfTruth.of(

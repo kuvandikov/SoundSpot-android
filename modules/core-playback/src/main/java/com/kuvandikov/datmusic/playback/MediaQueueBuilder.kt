@@ -4,12 +4,7 @@
  */
 package com.kuvandikov.datmusic.playback
 
-import javax.inject.Inject
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.firstOrNull
-import kotlinx.coroutines.flow.map
 import com.kuvandikov.datmusic.data.DatmusicSearchParams
-import com.kuvandikov.datmusic.data.DatmusicSearchParams.Companion.withTypes
 import com.kuvandikov.datmusic.data.db.daos.AlbumsDao
 import com.kuvandikov.datmusic.data.db.daos.ArtistsDao
 import com.kuvandikov.datmusic.data.repos.audio.AudiosRepo
@@ -20,13 +15,14 @@ import com.kuvandikov.datmusic.downloader.observers.ObserveDownloads
 import com.kuvandikov.datmusic.playback.models.MEDIA_TYPE_ALBUM
 import com.kuvandikov.datmusic.playback.models.MEDIA_TYPE_ARTIST
 import com.kuvandikov.datmusic.playback.models.MEDIA_TYPE_AUDIO
-import com.kuvandikov.datmusic.playback.models.MEDIA_TYPE_AUDIO_FLACS_QUERY
-import com.kuvandikov.datmusic.playback.models.MEDIA_TYPE_AUDIO_MINERVA_QUERY
 import com.kuvandikov.datmusic.playback.models.MEDIA_TYPE_AUDIO_QUERY
 import com.kuvandikov.datmusic.playback.models.MEDIA_TYPE_DOWNLOADS
 import com.kuvandikov.datmusic.playback.models.MEDIA_TYPE_PLAYLIST
 import com.kuvandikov.datmusic.playback.models.MediaId
 import com.kuvandikov.datmusic.playback.models.QueueTitle
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
+import javax.inject.Inject
 
 class MediaQueueBuilder @Inject constructor(
     private val audiosRepo: AudiosRepo,
@@ -42,14 +38,8 @@ class MediaQueueBuilder @Inject constructor(
             MEDIA_TYPE_ARTIST -> artistsDao.entry(value).firstOrNull()?.audios
             MEDIA_TYPE_PLAYLIST -> playlistsRepo.playlistItems(value.toLong()).firstOrNull()?.asAudios()
             MEDIA_TYPE_DOWNLOADS -> downloads.execute(ObserveDownloads.Params()).audios.map { it.audio }
-            MEDIA_TYPE_AUDIO_QUERY, MEDIA_TYPE_AUDIO_MINERVA_QUERY, MEDIA_TYPE_AUDIO_FLACS_QUERY -> {
-                val params = DatmusicSearchParams(value).run {
-                    when (type) {
-                        MEDIA_TYPE_AUDIO_MINERVA_QUERY -> withTypes(DatmusicSearchParams.BackendType.MINERVA)
-                        MEDIA_TYPE_AUDIO_FLACS_QUERY -> withTypes(DatmusicSearchParams.BackendType.FLACS)
-                        else -> this
-                    }
-                }
+            MEDIA_TYPE_AUDIO_QUERY -> {
+                val params = DatmusicSearchParams(value)
                 audiosRepo.entriesByParams(params).first()
             }
             else -> null
@@ -63,7 +53,7 @@ class MediaQueueBuilder @Inject constructor(
             MEDIA_TYPE_ALBUM -> QueueTitle(this, QueueTitle.Type.ALBUM, albumsDao.entry(value).firstOrNull()?.title)
             MEDIA_TYPE_PLAYLIST -> QueueTitle(this, QueueTitle.Type.PLAYLIST, playlistsRepo.playlist(value.toLong()).firstOrNull()?.name)
             MEDIA_TYPE_DOWNLOADS -> QueueTitle(this, QueueTitle.Type.DOWNLOADS)
-            MEDIA_TYPE_AUDIO_QUERY, MEDIA_TYPE_AUDIO_MINERVA_QUERY, MEDIA_TYPE_AUDIO_FLACS_QUERY -> QueueTitle(this, QueueTitle.Type.SEARCH, value)
+            MEDIA_TYPE_AUDIO_QUERY -> QueueTitle(this, QueueTitle.Type.SEARCH, value)
             else -> QueueTitle()
         }
     }

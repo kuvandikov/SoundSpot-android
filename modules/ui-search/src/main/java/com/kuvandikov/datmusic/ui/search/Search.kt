@@ -48,13 +48,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.emptyFlow
-import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.map
 import com.kuvandikov.common.compose.LocalIsPreviewMode
 import com.kuvandikov.common.compose.collectEvent
 import com.kuvandikov.common.compose.getNavArgument
@@ -70,6 +63,13 @@ import com.kuvandikov.ui.components.SearchTextField
 import com.kuvandikov.ui.theme.AppTheme
 import com.kuvandikov.ui.theme.topAppBarTitleStyle
 import com.kuvandikov.ui.theme.translucentSurface
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
 
 @Composable
 fun SearchRoute(isPreviewMode: Boolean = LocalIsPreviewMode.current) {
@@ -88,8 +88,6 @@ private fun Search(viewModel: SearchViewModel = hiltViewModel()) {
         albumsListState = rememberLazyListState(),
         searchLazyPagers = SearchLazyPagers(
             audios = rememberFlowWithLifecycle(viewModel.pagedAudioList).collectAsLazyPagingItems(),
-            minerva = rememberFlowWithLifecycle(viewModel.pagedMinervaList).collectAsLazyPagingItems(),
-            flacs = rememberFlowWithLifecycle(viewModel.pagedFlacsList).collectAsLazyPagingItems(),
             artists = rememberFlowWithLifecycle(viewModel.pagedArtistsList).collectAsLazyPagingItems(),
             albums = rememberFlowWithLifecycle(viewModel.pagedAlbumsList).collectAsLazyPagingItems(),
         )
@@ -269,8 +267,6 @@ private fun ColumnScope.SearchFilterPanel(
                         BackendType.AUDIOS -> R.string.search_audios
                         BackendType.ARTISTS -> R.string.search_artists
                         BackendType.ALBUMS -> R.string.search_albums
-                        BackendType.MINERVA -> R.string.search_minerva
-                        BackendType.FLACS -> R.string.search_flacs
                     }
                 )
             }
@@ -289,8 +285,6 @@ fun SearchPreview() = PreviewDatmusicCore {
             artists = flowOf(PagingData.from(SampleData.list { artist() })).collectAsLazyPagingItems(),
             albums = flowOf(PagingData.from(SampleData.list { album() })).collectAsLazyPagingItems(),
             audios = flowOf(PagingData.from(SampleData.list { audio() })).collectAsLazyPagingItems(),
-            minerva = flowOf(PagingData.from(SampleData.list { audio() })).collectAsLazyPagingItems(),
-            flacs = flowOf(PagingData.from(SampleData.list { audio() })).collectAsLazyPagingItems(),
         ),
         listState = rememberLazyListState(),
         artistsListState = rememberLazyListState(),

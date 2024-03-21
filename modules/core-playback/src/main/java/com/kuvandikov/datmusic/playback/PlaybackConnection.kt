@@ -15,16 +15,6 @@ import android.support.v4.media.session.PlaybackStateCompat
 import androidx.core.os.bundleOf
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
-import timber.log.Timber
 import com.kuvandikov.base.ui.SnackbarManager
 import com.kuvandikov.base.util.extensions.flowInterval
 import com.kuvandikov.base.util.extensions.stateInDefault
@@ -38,8 +28,6 @@ import com.kuvandikov.datmusic.downloader.Downloader
 import com.kuvandikov.datmusic.playback.models.MEDIA_TYPE_ALBUM
 import com.kuvandikov.datmusic.playback.models.MEDIA_TYPE_ARTIST
 import com.kuvandikov.datmusic.playback.models.MEDIA_TYPE_AUDIO
-import com.kuvandikov.datmusic.playback.models.MEDIA_TYPE_AUDIO_FLACS_QUERY
-import com.kuvandikov.datmusic.playback.models.MEDIA_TYPE_AUDIO_MINERVA_QUERY
 import com.kuvandikov.datmusic.playback.models.MEDIA_TYPE_AUDIO_QUERY
 import com.kuvandikov.datmusic.playback.models.MEDIA_TYPE_DOWNLOADS
 import com.kuvandikov.datmusic.playback.models.MEDIA_TYPE_PLAYLIST
@@ -59,6 +47,16 @@ import com.kuvandikov.datmusic.playback.players.QUEUE_TITLE_KEY
 import com.kuvandikov.datmusic.playback.players.QUEUE_TO_POSITION_KEY
 import com.kuvandikov.domain.models.orNull
 import com.kuvandikov.i18n.UiMessage
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
+import timber.log.Timber
 
 const val PLAYBACK_PROGRESS_INTERVAL = 1000L
 
@@ -84,8 +82,6 @@ interface PlaybackConnection {
     fun playAlbum(albumId: AlbumId, index: Int = 0)
     fun playFromDownloads(index: Int = 0, queue: List<AudioId> = emptyList())
     fun playWithQuery(query: String, audioId: String)
-    fun playWithMinervaQuery(query: String, audioId: String)
-    fun playWithFlacsQuery(query: String, audioId: String)
 
     fun swapQueue(from: Int, to: Int)
 
@@ -257,24 +253,6 @@ class PlaybackConnectionImpl(
     override fun playWithQuery(query: String, audioId: String) {
         transportControls?.playFromMediaId(
             MediaId(MEDIA_TYPE_AUDIO_QUERY, query, -1).toString(),
-            bundleOf(
-                QUEUE_MEDIA_ID_KEY to audioId
-            )
-        )
-    }
-
-    override fun playWithMinervaQuery(query: String, audioId: String) {
-        transportControls?.playFromMediaId(
-            MediaId(MEDIA_TYPE_AUDIO_MINERVA_QUERY, query, -1).toString(),
-            bundleOf(
-                QUEUE_MEDIA_ID_KEY to audioId
-            )
-        )
-    }
-
-    override fun playWithFlacsQuery(query: String, audioId: String) {
-        transportControls?.playFromMediaId(
-            MediaId(MEDIA_TYPE_AUDIO_FLACS_QUERY, query, -1).toString(),
             bundleOf(
                 QUEUE_MEDIA_ID_KEY to audioId
             )

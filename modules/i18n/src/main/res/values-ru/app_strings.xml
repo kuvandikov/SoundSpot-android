@@ -47,7 +47,6 @@
     <string name="downloads.download.open">Открыть файл</string>
     <string name="downloads.download.remove">Стереть</string>
     <string name="downloads.download.delete">Удалить файл</string>
-    <string name="search.minerva">Minerva</string>
     <string name="playback.queueTitle.search">Воспроизведение из поиска</string>
     <string name="settings.downloads.location">Расположение загрузок</string>
     <string name="settings.downloads.location.select">Выбрать</string>
@@ -78,7 +77,6 @@
     <string name="settings.theme.darkMode">Тёмный режим</string>
     <string name="settings.theme.colorPalette">Цветовая палитра</string>
     <string name="settings.downloads">Загрузки</string>
-    <string name="search.flacs">Flacs</string>
     <string name="playlist.addTo.new">Новый плейлист</string>
     <string name="settings.premium.subscribe">Подписаться</string>
     <string name="settings.premium.view">Посмотреть подписку</string>

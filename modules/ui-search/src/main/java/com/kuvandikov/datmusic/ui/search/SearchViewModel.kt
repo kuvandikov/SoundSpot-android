@@ -7,15 +7,7 @@ package com.kuvandikov.datmusic.ui.search
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
-import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
-import timber.log.Timber
 import com.kuvandikov.base.ui.SnackbarManager
 import com.kuvandikov.base.util.Analytics
 import com.kuvandikov.base.util.extensions.getMutableStateFlow
@@ -32,14 +24,19 @@ import com.kuvandikov.datmusic.domain.models.errors.ApiCaptchaError
 import com.kuvandikov.datmusic.playback.PlaybackConnection
 import com.kuvandikov.navigation.screens.QUERY_KEY
 import com.kuvandikov.navigation.screens.SEARCH_BACKENDS_KEY
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
+import timber.log.Timber
+import javax.inject.Inject
 
 @OptIn(FlowPreview::class)
 @HiltViewModel
 internal class SearchViewModel @Inject constructor(
     handle: SavedStateHandle,
     private val audiosPager: ObservePagedDatmusicSearch<Audio>,
-    private val minervaPager: ObservePagedDatmusicSearch<Audio>,
-    private val flacsPager: ObservePagedDatmusicSearch<Audio>,
     private val artistsPager: ObservePagedDatmusicSearch<Artist>,
     private val albumsPager: ObservePagedDatmusicSearch<Album>,
     private val snackbarManager: SnackbarManager,
@@ -49,12 +46,6 @@ internal class SearchViewModel @Inject constructor(
 
     companion object {
         const val SEARCH_DEBOUNCE_MILLIS = 400L
-        val MINERVA_PAGING = PagingConfig(
-            pageSize = 50,
-            initialLoadSize = 50,
-            prefetchDistance = 5,
-            enablePlaceholders = true
-        )
     }
 
     private val initialQuery = handle[QUERY_KEY] ?: ""
@@ -67,8 +58,6 @@ internal class SearchViewModel @Inject constructor(
     private val pendingActions = MutableSharedFlow<SearchAction>()
 
     val pagedAudioList get() = audiosPager.flow.cachedIn(viewModelScope)
-    val pagedMinervaList get() = minervaPager.flow.cachedIn(viewModelScope)
-    val pagedFlacsList get() = flacsPager.flow.cachedIn(viewModelScope)
     val pagedArtistsList get() = artistsPager.flow.cachedIn(viewModelScope)
     val pagedAlbumsList get() = albumsPager.flow.cachedIn(viewModelScope)
 
@@ -86,11 +75,6 @@ internal class SearchViewModel @Inject constructor(
                 when (action) {
                     is SearchAction.QueryChange -> {
                         searchQueryState.value = action.query
-
-                        // trigger search while typing if minerva is the only backend selected
-                        if (searchFilterState.value.hasMinervaOnly) {
-                            searchTriggerState.value = SearchTrigger(searchQueryState.value)
-                        }
                     }
                     is SearchAction.Search -> searchTriggerState.value = SearchTrigger(searchQueryState.value)
                     is SearchAction.SelectBackendType -> selectBackendType(action)
@@ -110,7 +94,7 @@ internal class SearchViewModel @Inject constructor(
                 }
         }
 
-        listOf(audiosPager, minervaPager, flacsPager, artistsPager, albumsPager).forEach { pager ->
+        listOf(audiosPager,artistsPager, albumsPager).forEach { pager ->
             pager.errors().watchForErrors(pager)
         }
     }
@@ -126,12 +110,6 @@ internal class SearchViewModel @Inject constructor(
 
         if (filter.hasAudios)
             audiosPager(ObservePagedDatmusicSearch.Params(searchParams))
-
-        if (filter.hasMinerva)
-            minervaPager(ObservePagedDatmusicSearch.Params(searchParams.withTypes(BackendType.MINERVA), MINERVA_PAGING))
-
-        if (filter.hasFlacs)
-            flacsPager(ObservePagedDatmusicSearch.Params(searchParams.withTypes(BackendType.FLACS), MINERVA_PAGING))
 
         // don't send queries if backend can't handle empty queries
         if (query.isNotBlank()) {
@@ -152,8 +130,6 @@ internal class SearchViewModel @Inject constructor(
     private fun playAudio(audio: Audio) {
         val query = searchTriggerState.value.query
         when {
-            searchFilterState.value.hasMinerva -> playbackConnection.playWithMinervaQuery(query, audio.id)
-            searchFilterState.value.hasFlacs -> playbackConnection.playWithFlacsQuery(query, audio.id)
             else -> playbackConnection.playWithQuery(query, audio.id)
         }
     }

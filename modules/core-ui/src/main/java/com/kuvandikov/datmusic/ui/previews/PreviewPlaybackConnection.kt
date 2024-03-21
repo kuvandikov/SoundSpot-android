@@ -11,8 +11,6 @@ import android.support.v4.media.session.MediaControllerCompat
 import android.support.v4.media.session.PlaybackStateCompat
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import com.kuvandikov.datmusic.data.SampleData
 import com.kuvandikov.datmusic.domain.entities.AlbumId
 import com.kuvandikov.datmusic.domain.entities.ArtistId
@@ -25,6 +23,8 @@ import com.kuvandikov.datmusic.playback.models.PlaybackProgressState
 import com.kuvandikov.datmusic.playback.models.PlaybackQueue
 import com.kuvandikov.datmusic.playback.models.QueueTitle
 import com.kuvandikov.datmusic.ui.R
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 lateinit var previewPlaybackConnectionInstance: PlaybackConnection
 
@@ -88,8 +88,6 @@ private class PreviewPlaybackConnection constructor(context: Context) : Playback
     override fun playAlbum(albumId: AlbumId, index: Int) {}
     override fun playFromDownloads(index: Int, queue: List<AudioId>) {}
     override fun playWithQuery(query: String, audioId: String) {}
-    override fun playWithMinervaQuery(query: String, audioId: String) {}
-    override fun playWithFlacsQuery(query: String, audioId: String) {}
     override fun swapQueue(from: Int, to: Int) {}
     override fun removeById(id: String) {}
 
