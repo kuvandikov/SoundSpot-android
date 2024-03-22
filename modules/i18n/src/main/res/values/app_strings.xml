@@ -167,7 +167,7 @@
     <string name="settings.about">About</string>
     <string name="settings.about.author">Author</string>
     <string name="settings.about.author.text">Anvarbek Kuvandikov</string>
-    <string name="settings.about.author.link">https://alashov.com</string>
+    <string name="settings.about.author.link">https://</string>
     <string name="settings.about.version">Version</string>
 
     <string name="settings.general">General</string>
