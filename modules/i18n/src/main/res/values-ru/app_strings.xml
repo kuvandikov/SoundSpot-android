@@ -59,8 +59,8 @@
     <string name="settings.downloads.songsGrouping.flat.example">/Песня</string>
     <string name="settings.about">О нас</string>
     <string name="settings.about.author">Автор</string>
-    <string name="settings.about.author.text">Алашов Беркели</string>
-    <string name="settings.about.author.link">https://alashov.com</string>
+    <string name="settings.about.author.text">Кувандиков Анварбек</string>
+    <string name="settings.about.author.link">https://</string>
     <string name="settings.about.version">Версия</string>
     <string name="captcha.title">Ошибка капчи</string>
     <string name="captcha.hint">Введите буквы выше</string>
