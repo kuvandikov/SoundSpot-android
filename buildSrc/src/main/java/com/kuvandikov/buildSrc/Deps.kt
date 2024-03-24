@@ -30,6 +30,7 @@ object Deps {
 
         const val activityVersion = "1.6.0-rc02"
         const val activityKtx = "androidx.activity:activity-ktx:$activityVersion"
+        const val coreKtx = "androidx.core:core-ktx:1.12.0"
 
         private const val navigationVersion = "2.5.1"
         const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
@@ -101,7 +102,7 @@ object Deps {
         }
 
         object Room {
-            private const val version = "2.4.1"
+            private const val version = "2.6.1"
 
             const val compiler = "androidx.room:room-compiler:$version"
             const val runtime = "androidx.room:room-runtime:$version"
@@ -138,8 +139,9 @@ object Deps {
 
         // const val fetch = "androidx.tonyodev.fetch2:xfetch2:3.1.6"
         // const val fetchOkhttp = "androidx.tonyodev.fetch2okhttp:xfetch2okhttp:3.1.6"
-        const val fetch = "com.github.alashow:Fetch:3.1.62"
-        const val fetchOkhttp = "com.github.alashow:xfetch2okhttp:3.1.62"
+        private const val fetchVersion = "3.0.2"
+        const val fetch = "com.github.AnvarbekKuvandikov.Fetch:fetch2:$fetchVersion"
+        const val fetchOkhttp = "com.github.AnvarbekKuvandikov.Fetch:fetch2okhttp:$fetchVersion"
 
         const val exoPlayer = "com.google.android.exoplayer:exoplayer-core:2.15.1"
         const val exoPlayerOkhttp = "com.google.android.exoplayer:extension-okhttp:2.15.0"

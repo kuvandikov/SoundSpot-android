@@ -39,6 +39,7 @@ repositories {
 
 dependencies {
 	api Deps.Utils.fetch
+	api Deps.Utils.fetchOkhttp
 	api Deps.Android.Room.runtime
 	implementation project(":modules:base")
 }

@@ -5,17 +5,12 @@
 package com.kuvandikov.datmusic.playback.services
 
 import android.content.Intent
+import android.content.pm.ServiceInfo
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.media.MediaBrowserCompat
 import androidx.media.MediaBrowserServiceCompat
 import androidx.media.session.MediaButtonReceiver
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import timber.log.Timber
 import com.kuvandikov.base.util.CoroutineDispatchers
 import com.kuvandikov.datmusic.playback.MediaNotificationsImpl
 import com.kuvandikov.datmusic.playback.MediaQueueBuilder
@@ -33,6 +28,13 @@ import com.kuvandikov.datmusic.playback.models.toMediaItems
 import com.kuvandikov.datmusic.playback.playPause
 import com.kuvandikov.datmusic.playback.players.DatmusicPlayerImpl
 import com.kuvandikov.datmusic.playback.receivers.BecomingNoisyReceiver
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import timber.log.Timber
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class PlayerService : MediaBrowserServiceCompat(), CoroutineScope by MainScope() {
@@ -84,7 +86,12 @@ class PlayerService : MediaBrowserServiceCompat(), CoroutineScope by MainScope()
             return
         }
         Timber.d("Starting foreground service")
-        startForeground(NOTIFICATION_ID, mediaNotifications.buildNotification(datmusicPlayer.getSession()))
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            startForeground(NOTIFICATION_ID, mediaNotifications.buildNotification(datmusicPlayer.getSession()),ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK)
+        }
+        else{
+            startForeground(NOTIFICATION_ID, mediaNotifications.buildNotification(datmusicPlayer.getSession()))
+        }
         becomingNoisyReceiver.register()
         IS_FOREGROUND = true
     }

@@ -5,6 +5,7 @@
 
 
 import com.kuvandikov.buildSrc.App
+import com.kuvandikov.buildSrc.Deps
 
 plugins {
 	id "com.android.library"
@@ -40,4 +41,5 @@ repositories {
 dependencies {
 	api project(":modules:common-domain")
 	implementation project(":modules:base")
+	implementation Deps.Android.coreKtx
 }

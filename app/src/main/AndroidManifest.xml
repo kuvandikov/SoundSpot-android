@@ -9,6 +9,8 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
+
 
     <application
         android:name="com.kuvandikov.datmusic.App"
@@ -44,6 +46,7 @@
 
         <service
             android:name="com.kuvandikov.datmusic.playback.services.PlayerService"
+            android:foregroundServiceType="mediaPlayback"
             android:enabled="true"
             android:exported="true">
             <intent-filter>

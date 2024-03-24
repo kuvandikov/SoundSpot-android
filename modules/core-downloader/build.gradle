@@ -36,6 +36,7 @@ dependencies {
 	api project(":modules:core-media")
 
 	implementation Deps.Dagger.hilt
+	implementation Deps.Android.coreKtx
 	kapt Deps.Dagger.compiler
 	kapt Deps.Dagger.hiltCompiler
 
