@@ -26,7 +26,7 @@ android {
 		sourceCompatibility JavaVersion.VERSION_1_8
 		targetCompatibility JavaVersion.VERSION_1_8
 	}
-	namespace 'com.kuvandikov.datmusic.playback'
+	namespace 'com.kuvandikov.soundspot.playback'
 }
 
 repositories {

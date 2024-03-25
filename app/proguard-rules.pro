@@ -42,5 +42,5 @@
 -keep interface com.tonyodev.fetch2core.** {*;}
 
 # project
--keep class com.kuvandikov.datmusic.domain.entities.** { *; }
--keep class com.kuvandikov.datmusic.domain.models.** { *; }
+-keep class com.kuvandikov.soundspot.domain.entities.** { *; }
+-keep class com.kuvandikov.soundspot.domain.models.** { *; }

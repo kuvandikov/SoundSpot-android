@@ -20,12 +20,12 @@ import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.google.accompanist.navigation.material.bottomSheet
 import com.kuvandikov.Config
-import com.kuvandikov.datmusic.data.DatmusicSearchParams
-import com.kuvandikov.datmusic.data.DatmusicSearchParams.BackendType.Companion.toQueryParam
-import com.kuvandikov.datmusic.domain.entities.Album
-import com.kuvandikov.datmusic.domain.entities.AlbumId
-import com.kuvandikov.datmusic.domain.entities.ArtistId
-import com.kuvandikov.datmusic.domain.entities.PlaylistId
+import com.kuvandikov.soundspot.data.SoundspotSearchParams
+import com.kuvandikov.soundspot.data.SoundspotSearchParams.BackendType.Companion.toQueryParam
+import com.kuvandikov.soundspot.domain.entities.Album
+import com.kuvandikov.soundspot.domain.entities.AlbumId
+import com.kuvandikov.soundspot.domain.entities.ArtistId
+import com.kuvandikov.soundspot.domain.entities.PlaylistId
 
 const val QUERY_KEY = "query"
 const val SEARCH_BACKENDS_KEY = "backends"
@@ -90,7 +90,7 @@ sealed class LeafScreen(
         companion object {
             fun buildRoute(
                 query: String,
-                vararg backends: DatmusicSearchParams.BackendType
+                vararg backends: SoundspotSearchParams.BackendType
             ) = "${RootScreen.Search.route}/search/?$QUERY_KEY=$query&$SEARCH_BACKENDS_KEY=${backends.toSet().toQueryParam()}"
 
             fun buildUri(query: String) = "${Config.BASE_URL}search?q=$query".toUri()

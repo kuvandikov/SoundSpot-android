@@ -35,7 +35,7 @@ android {
 	composeOptions {
 		kotlinCompilerExtensionVersion Deps.Android.Compose.compilerVersion
 	}
-	namespace 'com.kuvandikov.datmusic.ui.playback'
+	namespace 'com.kuvandikov.soundspot.ui.playback'
 }
 
 repositories {

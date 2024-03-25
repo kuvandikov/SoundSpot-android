@@ -3,9 +3,9 @@
   All rights reserved.
   -->
 <resources>
-    <string name="app_name">Datmusic</string>
-    <string name="app_launcher">Datmusic</string>
-    <string name="app_label">Datmusic</string>
+    <string name="app_name">Soundspot</string>
+    <string name="app_launcher">Soundspot</string>
+    <string name="app_label">Soundspot</string>
 
     <string name="appBar.search.hint">Search query</string>
 

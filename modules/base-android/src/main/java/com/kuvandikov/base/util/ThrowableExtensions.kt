@@ -17,8 +17,8 @@ import javax.net.ssl.SSLException
 import retrofit2.HttpException
 import com.kuvandikov.base.R
 import com.kuvandikov.base.util.extensions.simpleName
-import com.kuvandikov.datmusic.domain.models.errors.ApiErrorException
-import com.kuvandikov.datmusic.domain.models.errors.EmptyResultException
+import com.kuvandikov.soundspot.domain.models.errors.ApiErrorException
+import com.kuvandikov.soundspot.domain.models.errors.EmptyResultException
 import com.kuvandikov.i18n.UiMessage
 import com.kuvandikov.i18n.UiMessageConvertable
 

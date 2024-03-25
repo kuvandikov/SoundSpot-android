@@ -1,7 +1,7 @@
 package com.kuvandikov.buildSrc
 
 object App {
-    const val id = "com.kuvandikov.datmusic"
+    const val id = "com.kuvandikov.soundspot"
 
     const val compileSdkVersion = 34
     const val targetSdkVersion = 34

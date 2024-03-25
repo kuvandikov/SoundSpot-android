@@ -9,7 +9,7 @@ import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
 import com.kuvandikov.Config
-import com.kuvandikov.datmusic.domain.entities.PlaylistId
+import com.kuvandikov.soundspot.domain.entities.PlaylistId
 
 private const val PATH = "update_playlist"
 

@@ -1,15 +1,15 @@
 {
   "project_info": {
     "project_number": "563689063735",
-    "project_id": "datmusic-aef75",
-    "storage_bucket": "datmusic-aef75.appspot.com"
+    "project_id": "soundspot-aef75",
+    "storage_bucket": "soundspot-aef75.appspot.com"
   },
   "client": [
     {
       "client_info": {
         "mobilesdk_app_id": "1:563689063735:android:cf77eb4e2d28f3887046b2",
         "android_client_info": {
-          "package_name": "com.kuvandikov.datmusic"
+          "package_name": "com.kuvandikov.soundspot"
         }
       },
       "oauth_client": [],
@@ -28,7 +28,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:563689063735:android:8c2651e6f04bd6617046b2",
         "android_client_info": {
-          "package_name": "com.kuvandikov.datmusic.debug"
+          "package_name": "com.kuvandikov.soundspot.debug"
         }
       },
       "oauth_client": [],

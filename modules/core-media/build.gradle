@@ -28,7 +28,7 @@ android {
 	lint {
 		disable 'GradleCompatible'
 	}
-	namespace 'com.kuvandikov.datmusic.coreMedia'
+	namespace 'com.kuvandikov.soundspot.coreMedia'
 }
 
 repositories {

@@ -22,7 +22,7 @@ android {
 	compileSdkVersion = App.compileSdkVersion
 
 	defaultConfig {
-		namespace = "com.kuvandikov.datmusic"
+		namespace = "com.kuvandikov.soundspot"
 		applicationId = App.id
 		versionCode = App.versionCode
 		versionName = "${App.versionName}-${gitSha}"
