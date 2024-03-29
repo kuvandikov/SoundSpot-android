@@ -23,7 +23,7 @@ class DatabaseModule {
     fun soundspotDatabase(@ApplicationContext context: Context): AppDatabase {
         val builder = Room.databaseBuilder(context, AppDatabase::class.java, "app.db")
 //            .addMigrations(MIGRATION_3_4)
-            .fallbackToDestructiveMigration()
+//            .fallbackToDestructiveMigration()
         return builder.build()
     }
 

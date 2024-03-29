@@ -1,8 +1,8 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 12,
-    "identityHash": "98e2c4fa86bf9a0c0ab191d97086dbe3",
+    "version": 13,
+    "identityHash": "13b76f9ac3393ca72a796c8c9aa968d2",
     "entities": [
       {
         "tableName": "audios",
@@ -125,10 +125,63 @@
           }
         ],
         "primaryKey": {
+          "autoGenerate": false,
           "columnNames": [
             "primaryKey"
-          ],
-          "autoGenerate": false
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "ftsVersion": "FTS4",
+        "ftsOptions": {
+          "tokenizer": "simple",
+          "tokenizerArgs": [],
+          "contentTable": "audios",
+          "languageIdColumnName": "",
+          "matchInfo": "FTS4",
+          "notIndexedColumns": [],
+          "prefixSizes": [],
+          "preferredOrder": "ASC"
+        },
+        "contentSyncTriggers": [
+          "CREATE TRIGGER IF NOT EXISTS room_fts_content_sync_audios_fts_BEFORE_UPDATE BEFORE UPDATE ON `audios` BEGIN DELETE FROM `audios_fts` WHERE `docid`=OLD.`rowid`; END",
+          "CREATE TRIGGER IF NOT EXISTS room_fts_content_sync_audios_fts_BEFORE_DELETE BEFORE DELETE ON `audios` BEGIN DELETE FROM `audios_fts` WHERE `docid`=OLD.`rowid`; END",
+          "CREATE TRIGGER IF NOT EXISTS room_fts_content_sync_audios_fts_AFTER_UPDATE AFTER UPDATE ON `audios` BEGIN INSERT INTO `audios_fts`(`docid`, `id`, `artist`, `title`, `album`) VALUES (NEW.`rowid`, NEW.`id`, NEW.`artist`, NEW.`title`, NEW.`album`); END",
+          "CREATE TRIGGER IF NOT EXISTS room_fts_content_sync_audios_fts_AFTER_INSERT AFTER INSERT ON `audios` BEGIN INSERT INTO `audios_fts`(`docid`, `id`, `artist`, `title`, `album`) VALUES (NEW.`rowid`, NEW.`id`, NEW.`artist`, NEW.`title`, NEW.`album`); END"
+        ],
+        "tableName": "audios_fts",
+        "createSql": "CREATE VIRTUAL TABLE IF NOT EXISTS `${TABLE_NAME}` USING FTS4(`id` TEXT NOT NULL, `artist` TEXT NOT NULL, `title` TEXT NOT NULL, `album` TEXT, content=`audios`)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "artist",
+            "columnName": "artist",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "album",
+            "columnName": "album",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": []
         },
         "indices": [],
         "foreignKeys": []
@@ -205,10 +258,10 @@
           }
         ],
         "primaryKey": {
+          "autoGenerate": false,
           "columnNames": [
             "primaryKey"
-          ],
-          "autoGenerate": false
+          ]
         },
         "indices": [],
         "foreignKeys": []
@@ -316,10 +369,10 @@
           }
         ],
         "primaryKey": {
+          "autoGenerate": false,
           "columnNames": [
             "primaryKey"
-          ],
-          "autoGenerate": false
+          ]
         },
         "indices": [],
         "foreignKeys": []
@@ -366,10 +419,10 @@
           }
         ],
         "primaryKey": {
+          "autoGenerate": false,
           "columnNames": [
             "id"
-          ],
-          "autoGenerate": false
+          ]
         },
         "indices": [],
         "foreignKeys": []
@@ -417,10 +470,10 @@
           }
         ],
         "primaryKey": {
+          "autoGenerate": true,
           "columnNames": [
             "id"
-          ],
-          "autoGenerate": true
+          ]
         },
         "indices": [],
         "foreignKeys": []
@@ -456,10 +509,10 @@
           }
         ],
         "primaryKey": {
+          "autoGenerate": true,
           "columnNames": [
             "id"
-          ],
-          "autoGenerate": true
+          ]
         },
         "indices": [
           {
@@ -499,7 +552,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '98e2c4fa86bf9a0c0ab191d97086dbe3')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '13b76f9ac3393ca72a796c8c9aa968d2')"
     ]
   }
 }
