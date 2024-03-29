@@ -87,6 +87,7 @@ fun SearchTextField(
                 IconButton(
                     onClick = {
                         onValueChange("")
+                        onSearch.invoke()
                         analytics.click("$analyticsPrefix.clear")
                     },
                 ) {

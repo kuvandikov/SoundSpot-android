@@ -12,7 +12,7 @@ enum class DownloadsSongsGrouping(val labelRes: Int, val exampleRes: Int) {
     Flat(R.string.settings_downloads_songsGrouping_flat, R.string.settings_downloads_songsGrouping_flat_example);
 
     companion object {
-        val Default = ByAlbum
+        val Default = Flat
         val map = values().associateBy { it.name }
 
         fun from(value: String) = map[value] ?: Default
