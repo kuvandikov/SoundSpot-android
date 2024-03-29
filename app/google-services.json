@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "563689063735",
-    "project_id": "soundspot-aef75",
-    "storage_bucket": "soundspot-aef75.appspot.com"
+    "project_number": "592870350593",
+    "project_id": "soundspot-26c20",
+    "storage_bucket": "soundspot-26c20.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:563689063735:android:cf77eb4e2d28f3887046b2",
+        "mobilesdk_app_id": "1:592870350593:android:506c96531fff117a8ac500",
         "android_client_info": {
           "package_name": "com.kuvandikov.soundspot"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDO41u6Kxaoroc-Y3_paPtCsaHr9WsXLSo"
+          "current_key": "AIzaSyDSCax55OrqOQ-_rAzZDjncH10lgKkMksc"
         }
       ],
       "services": {
@@ -26,7 +26,7 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:563689063735:android:8c2651e6f04bd6617046b2",
+        "mobilesdk_app_id": "1:592870350593:android:4d45cd9282fa21298ac500",
         "android_client_info": {
           "package_name": "com.kuvandikov.soundspot.debug"
         }
@@ -34,7 +34,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDO41u6Kxaoroc-Y3_paPtCsaHr9WsXLSo"
+          "current_key": "AIzaSyDSCax55OrqOQ-_rAzZDjncH10lgKkMksc"
         }
       ],
       "services": {
