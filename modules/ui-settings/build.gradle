@@ -33,7 +33,7 @@ android {
 	composeOptions {
 		kotlinCompilerExtensionVersion Deps.Android.Compose.compilerVersion
 	}
-	namespace 'com.kuvandikov.datmusic.ui.settings'
+	namespace 'com.kuvandikov.soundspot.ui.settings'
 }
 
 repositories {

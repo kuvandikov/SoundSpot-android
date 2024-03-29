@@ -13,7 +13,7 @@
 
 
     <application
-        android:name="com.kuvandikov.datmusic.App"
+        android:name="com.kuvandikov.soundspot.App"
         android:allowBackup="true"
         android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
@@ -21,7 +21,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/Theme.App.Home">
         <activity
-            android:name="com.kuvandikov.datmusic.ui.MainActivity"
+            android:name="com.kuvandikov.soundspot.ui.MainActivity"
             android:theme="@style/Theme.App.Home"
             android:windowSoftInputMode="adjustResize|adjustPan"
             android:exported="true">
@@ -32,12 +32,12 @@
             <intent-filter>
                 <data
                     android:scheme="https"
-                    android:host="datmusic.xyz" />
+                    android:host="soundspot.xyz" />
             </intent-filter>
         </activity>
 
         <service
-            android:name="com.kuvandikov.datmusic.fcm.FirebaseMessagingService"
+            android:name="com.kuvandikov.soundspot.fcm.FirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -45,7 +45,7 @@
         </service>
 
         <service
-            android:name="com.kuvandikov.datmusic.playback.services.PlayerService"
+            android:name="com.kuvandikov.soundspot.playback.services.PlayerService"
             android:foregroundServiceType="mediaPlayback"
             android:enabled="true"
             android:exported="true">

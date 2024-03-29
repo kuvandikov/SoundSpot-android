@@ -14,7 +14,7 @@ plugins {
 }
 
 android {
-	namespace "com.kuvandikov.datmusic.ui.media"
+	namespace "com.kuvandikov.soundspot.ui.media"
 
 	compileSdkVersion App.compileSdkVersion
 

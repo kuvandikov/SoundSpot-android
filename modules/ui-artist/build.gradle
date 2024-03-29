@@ -16,7 +16,7 @@ plugins {
 }
 
 android {
-	namespace = "com.kuvandikov.datmusic.ui.artist"
+	namespace = "com.kuvandikov.soundspot.ui.artist"
 	compileSdkVersion = App.compileSdkVersion
 
 	defaultConfig {

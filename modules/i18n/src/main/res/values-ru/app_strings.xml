@@ -22,7 +22,7 @@
     <string name="downloader.enqueue.audio.error.fileCreate">Не удалось создать файл в папке загрузок</string>
     <string name="downloader.enqueue.audio.existing.resuming">Возобновлена существующая загрузка</string>
     <string name="downloader.enqueue.audio.existing.alreadyQueued">Трек уже находится в очереди на скачивание</string>
-    <string name="app_name">Datmusic</string>
+    <string name="app_name">Soundspot</string>
     <string name="downloader.enqueue.audio.existing.completed">Этот трек уже был загружен</string>
     <string name="downloader.enqueue.audio.existing.unknown">Запрос на загрузку существует, но имеет необработанный статус: %1$s</string>
     <string name="downloads.title">Загрузки</string>
@@ -69,8 +69,8 @@
     <string name="error.keyError">Ошибка ключа доступа, обновите приложение или свяжитесь разработчиком</string>
     <string name="error.unavailable">Помедленнее</string>
     <string name="captcha.reload">Перезагрузить</string>
-    <string name="app_launcher">Datmusic</string>
-    <string name="app_label">Datmusic</string>
+    <string name="app_launcher">Soundspot</string>
+    <string name="app_label">Soundspot</string>
     <string name="settings.title">Настройки</string>
     <string name="settings.theme">Тема</string>
     <string name="settings.theme.darkMode">Тёмный режим</string>

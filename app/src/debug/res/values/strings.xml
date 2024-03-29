@@ -4,6 +4,6 @@
   -->
 
 <resources>
-    <string name="app_launcher">[D] Datmusic</string>
-    <string name="app_name">[D] Datmusic</string>
+    <string name="app_launcher">SoundSpot</string>
+    <string name="app_name">SoundSpot</string>
 </resources>
