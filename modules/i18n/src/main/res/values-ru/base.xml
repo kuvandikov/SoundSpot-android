@@ -38,4 +38,5 @@
     <string name="error.database.validation.notFound">Предмет не найден</string>
     <string name="time.duration.short">%1$dч %2$dмин</string>
     <string name="time.duration.minutes.short">%1$d мин</string>
+    <string name="dropdown.selected.multiple">Несколько</string>
 </resources>
