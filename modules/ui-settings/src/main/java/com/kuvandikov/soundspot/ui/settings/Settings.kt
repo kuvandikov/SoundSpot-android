@@ -37,7 +37,6 @@ import com.kuvandikov.soundspot.downloader.Downloader
 import com.kuvandikov.soundspot.ui.downloader.LocalDownloader
 import com.kuvandikov.soundspot.ui.previews.PreviewSoundspotCore
 import com.kuvandikov.soundspot.ui.settings.backup.BackupRestoreButton
-import com.kuvandikov.soundspot.ui.settings.premium.PremiumButton
 import com.kuvandikov.ui.ProvideScaffoldPadding
 import com.kuvandikov.ui.ThemeViewModel
 import com.kuvandikov.ui.components.AppOutlinedButton
@@ -120,7 +119,7 @@ fun LazyListScope.settingsGeneralSection() {
         SettingsSectionLabel(stringResource(R.string.settings_general))
 
         SettingsItem(stringResource(R.string.settings_premium)) {
-            PremiumButton()
+
         }
     }
 }

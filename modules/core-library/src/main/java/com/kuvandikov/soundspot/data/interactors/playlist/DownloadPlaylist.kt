@@ -7,7 +7,6 @@ package com.kuvandikov.soundspot.data.interactors.playlist
 import javax.inject.Inject
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
-import com.kuvandikov.base.billing.Subscriptions
 import com.kuvandikov.base.util.CoroutineDispatchers
 import com.kuvandikov.data.AsyncInteractor
 import com.kuvandikov.soundspot.coreLibrary.R
@@ -28,7 +27,6 @@ class DownloadPlaylist @Inject constructor(
 
     override suspend fun prepare(params: PlaylistId) {
         downloader.clearDownloaderEvents()
-        Subscriptions.checkPremiumPermission()
         if (repo.playlistItems(params).first().isEmpty())
             throw PlaylistIsEmpty.error()
     }

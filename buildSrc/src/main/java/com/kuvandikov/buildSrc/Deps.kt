@@ -147,7 +147,7 @@ object Deps {
         const val exoPlayerOkhttp = "com.google.android.exoplayer:extension-okhttp:2.15.0"
         const val exoPlayerFlac = "com.github.alashow.ExoPlayer-Extensions:extension-flac:v2.15.1"
 
-        const val qonversion = "io.qonversion.android.sdk:sdk:3.3.1"
+        const val qonversion = "io.qonversion.android.sdk:sdk:7.2.0"
     }
 
     object OkHttp {

@@ -16,7 +16,6 @@ plugins {
 	id("androidx.navigation.safeargs.kotlin")
 }
 
-def gitSha = "git rev-parse --short HEAD".execute([], project.rootDir).text.trim()
 
 android {
 	compileSdkVersion = App.compileSdkVersion
@@ -25,7 +24,7 @@ android {
 		namespace = "com.kuvandikov.soundspot"
 		applicationId = App.id
 		versionCode = App.versionCode
-		versionName = "${App.versionName}-${gitSha}"
+		versionName = App.versionName
 		targetSdkVersion(App.targetSdkVersion)
 		minSdkVersion(App.minSdkVersion)
 
