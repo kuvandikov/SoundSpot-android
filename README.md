@@ -15,7 +15,7 @@ SoundSpot is a simple and elegant music app developed using **Jetpack Compose** 
 
 | Home Screen | Music Player |
 |-------------|--------------|
-| ![Home Screen](path_to_home_screenshot.png) | ![Music Player](path_to_player_screenshot.png) |
+| ![Home Screen](player_screenshot.webp) | ![Music Player](home_screenshot.webp) |
 
 ## Technologies Used 🛠
 
